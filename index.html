@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+	<title>GifMadness</title>
+	<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+	<link rel="stylesheet" href="assets/css/reset.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div class="message"></div>
+<header class="container">
+	<h1>API Central</h1>
+	<nav class="tabs">
+		<ul>
+			<li class="tab active"><a href="gifs">GifMadness</a></li>
+			<li class="tab"><a href="news">News</a></li>
+			<li class="tab"><a href="movies">Movies</a></li>
+		</ul>
+	</nav>
+</header>
+<div class="wrapper">
+	<div class="container">
+	
+		<div class="tab-panes">
+			
+			<section class="tab-pane active" id="gifs">
+				<header class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<h2 class="section-title">GifMadness</h2>
+						</div>
+					</div>
+				</header>
+				<div class="row">
+					<div class="col-md-9 gifs-main">
+						<div class="results-container"></div>
+						<a href="add" class="add-more">Load More Gifs!</a>
+					</div>
+					<div class="col-md-3">
+						<h2>The Dashboard</h2>
+						<hr>
+						<label for="add-topic">
+							Add topic to the feed<br>
+							<input type="text" name="new-topic" class="new-topic">
+						</label>
+						<button class="submit-new">Submit</button>
+						<hr>
+						<div class="topic-buttons"></div>
+					</div>
+				</div>
+			</section>
+
+			<section class="tab-pane" id="news">
+				<header class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<h2>News</h2>
+						</div>
+					</div>
+				</header>
+				<div class="row">
+					<div class="col-md-9 news-main">
+						<div class="results-container"></div>
+						<a href="add" class="add-more">Load More Gifs!</a>
+					</div>
+					<div class="col-md-3">
+						<h2>The Dashboard</h2>
+						<hr>
+						<label for="addGif">
+							Add topic to the feed<br>
+							<input type="text" name="new-topic" class="new-topic">
+						</label>
+						<button class="submit-new">Submit</button>
+						<hr>
+						<div class="topic-buttons"></div>
+					</div>
+				</div>
+			</section>
+
+			<section class="tab-pane" id="movies">
+				<header class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<h2>Movies</h2>
+						</div>
+					</div>
+				</header>
+				<div class="row">
+					<div class="col-md-9 movies-main">
+						<div class="results-container"></div>
+						<a href="add" class="add-more">Load More Gifs!</a>
+					</div>
+					<div class="col-md-3">
+						<h2>The Dashboard</h2>
+						<hr>
+						<label for="addGif">
+							Add topic to the feed<br>						
+							<input type="text" name="new-topic" class="new-topic">
+						</label>
+						<button class="submit-new">Submit</button>
+						<hr>
+						<div class="topic-buttons"></div>
+					</div>
+				</div>
+			</section>
+
+		</div>
+	</div>
+</div>
+<footer>
+	&copy; API Playground by Peter Abeln - courtsey of <a href="https://giphy.com" target="_blank">giphy.com</a>
+</footer>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="assets/js/api-engine.js"></script>
+</body>
+</html>

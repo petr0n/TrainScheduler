@@ -1,0 +1,122 @@
+/* style.css */
+
+/* f06449-ede6e3-dadad9-36382e-5bc3eb */
+:root {
+    --main-red: #f06449;
+    --main-gray: #ede6e3;
+    --main-gray-lt: #dadad9;
+    --main-gray-dk: #36382e;
+    --main-blue: #5bc3eb;
+}
+
+body {
+    font-family: 'Cabin', sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Cabin', sans-serif;
+    color: var(--main-gray-dk);
+}
+
+header {
+    display: flex;
+    color: var(--main-blue);
+    justify-content: space-between;
+    padding: 40px;
+    text-align: center;
+}
+header nav li {
+    padding: 1px 20px;
+}
+header nav li a.active{
+    color: red;
+}
+
+
+
+.wrapper {
+    margin-bottom: 50px;
+}
+
+.gif-main h2 {
+    text-align: center;
+}
+.results-container {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.results-container .result-block {
+    background-color: #F8F8F8;
+    border: 1px solid var(--main-gray);
+    border-radius: 3px;
+    height: 300px;
+    margin: 0 10px 45px;
+    padding: 15px;
+    overflow: hidden;
+    width: 30%;
+}
+.results-container .result-block.two-wide {
+    width: 47%;
+}
+.result-block h4 {
+    height: 76px;
+    overflow: hidden;
+}
+.result-block.two-wide h4 {
+    height: 85px;
+}
+.add-more {
+    background: linear-gradient(#F8F8F8 0%, #DADAD9 100%) no-repeat 50% 50% / 100% 100%;
+    border: 1px solid #ccc;
+    display: block;
+    color: var(--main-gray-dk);
+    font-size: 1.4em;
+    margin: 0 auto;
+    padding: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 95.5%;
+}
+.add-more:hover {
+    background: linear-gradient(#E8E8E8 0,#F8F8F8 100%) no-repeat 50% 50% / 100% 100%;
+    color: var(--main-blue);
+    text-decoration: none;
+}
+
+
+.gif-buttons {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.gif-buttons button {
+    margin: 0 10px 10px;
+}
+
+footer {
+    background-color: var(--main-blue);
+    color: var(--main-gray-lt);
+    height: 40px;
+    line-height: 2.4;
+    text-align: center;
+}
+
+.tabs ul {
+    list-style: none;
+}
+.tabs ul li {
+    display: inline;
+}
+.tabs ul li a.active {
+    font-weight: bold;
+}
+.tab-pane {
+    display: none;
+}
+.tab-pane.active {
+    display: block;
+}

@@ -2,11 +2,40 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-	<title>Train Scheduler</title>
+	<title>Train Scheduler Login</title>
 	<link href="https://fonts.googleapis.com/css?family=Anton|Thasadith" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
 	<link rel="stylesheet" href="assets/css/style.css">
+
+
+	<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+    <script type="text/javascript">
+      // FirebaseUI config.
+      var uiConfig = {
+        signInSuccessUrl: 'https://petr0n.github.io/TrainScheduler/',
+        signInOptions: [
+          // Leave the lines as is for the providers you want to offer your users.
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID
+        ],
+        // tosUrl and privacyPolicyUrl accept either url string or a callback
+        // function.
+        // Terms of service url/callback.
+        tosUrl: '<your-tos-url>',
+        // Privacy policy url/callback.
+        privacyPolicyUrl: function() {
+          window.location.assign('<your-privacy-policy-url>');
+        }
+      };
+
+      // Initialize the FirebaseUI Widget using Firebase.
+      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+      // The start method will wait until the DOM is loaded.
+      ui.start('#firebaseui-auth-container', uiConfig);
+    </script>
+
+
 </head>
 <body>
 <div class="message"></div>
@@ -15,129 +44,7 @@
 		<h1>Train Scheduler</h1>
 	</div>
 </header>
-<div class="success alert alert-success" style="display:none;"></div>
-<div class="wrapper">
-	<section class="schedule-wrapper">
-		<div class="container">
-			<div class="card">
-				<div class="card-header">
-					<h2><i class="icon-travel-train"></i> Train Schedule</h2>
-				</div>
-				<div class="card-body">
-					<table class="schedule table">
-						<thead>
-							<tr>
-								<th class="wide">Train Name</th>
-								<th class="wide">Destination</th>
-								<th class="centered">Frequency(min)</th>
-								<th class="centered">Next Arrival</th>
-								<th>Minutes Away</th>
-								<th>Edit</th>
-							</tr>
-						</thead>
-						<tbody>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-
-	</section>
-
-
-	<section class="train-form">
-		<div class="container">
-			<div class="card">
-				<div class="card-header">
-					<h3>Add Train</h3>
-				</div>
-				<div class="card-body">
-					<p>Required <span class="required">*</span></p>
-					<form id="trainForm" class="needs-validation" novalidate>
-						<input type="hidden" id="trainId" name="trainId">
-						<div class="form-group row">
-							<label for="trainName" class="col-sm-3 col-form-label">
-								Train Name 
-								<span class="required">*</span>
-							</label>
-							<div class="col-sm-5 mb-3">
-								<input type="text" class="form-control" id="trainName" required>
-								<div class="invalid-feedback">
-									Train Name required
-								</div>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="destination" class="col-sm-3 col-form-label">
-								Destination 
-								<span class="required">*</span>
-							</label>
-							<div class="col-sm-5 mb-3">
-								<input type="text" class="form-control" id="destination" required>
-								<div class="invalid-feedback">
-									Destination required
-								</div>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="firstTrainTime" class="col-sm-3 col-form-label">
-								First Train Time (HH:mm) 
-								<span class="required">*</span>
-							</label>
-							<div class="col-sm-5 mb-3">
-								<input type="text" pattern="([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]" class="form-control" id="firstTrainTime" placeholder="HH:mm" required>
-								<div class="invalid-feedback">
-									Valid First Train Time required (HH:mm e.g. 02:00)
-								</div>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="frequency" class="col-sm-3 col-form-label">
-								Frequency <span class="required">*</span>
-							</label>
-							<div class="input-group col-md-5 mb-3">
-								<input type="number" class="form-control" id="frequency" required>
-								<div class="invalid-feedback">
-									Frequency required
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-2 offset-md-3">
-								<button type="submit" class="btn submit">Submit</button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-		
-	</section>
-		
-</div>
-<footer>
-	&copy; Train Scheduler by Peter Abeln
-</footer>
-
-<!-- modal -->
-<div id="train_modal" class="modal" style="display: none;">
-	<div class="modal-content">
-		<div class="modal-title">
-			<span class="modal_close">&times;</span>
-			<h3>Remove Train</h3>
-			<span>Are you sure you want to remove this train?</span></div>
-		<div class="modal-form-wrapper">
-		</div>
-		<div class="modal-footer">
-			<button class="cancel">Cancel</button>
-			<button class="remove">Remove</button>
-		</div>
-	</div>
-</div>
-
-<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-<script src="assets/js/app.js"></script>
+<h1>Welcome to My Awesome App</h1>
+    <div id="firebaseui-auth-container"></div>
 </body>
 </html>

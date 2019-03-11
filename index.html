@@ -24,6 +24,7 @@
 		var uiConfig = {
 			signInSuccessUrl: 'https://petr0n.github.io/TrainScheduler/scheduler.html',
 			signInOptions: [
+				firebase.auth.GithubAuthProvider.PROVIDER_ID,
 				firebase.auth.GoogleAuthProvider.PROVIDER_ID
 			],
 			tosUrl: '<your-tos-url>',
@@ -49,7 +50,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3 col-offset-4" style="text-align: center;">
-				<p>Or skip <a href="https://petr0n.github.io/TrainScheduler/scheduler.html">sign in</a>.</p>
+				<p>Or <a href="https://petr0n.github.io/TrainScheduler/scheduler.html">skip sign in</a>.</p>
 			</div>
 		</div>
 	</div>

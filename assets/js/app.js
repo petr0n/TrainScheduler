@@ -1,21 +1,20 @@
 // Initialize Firebase
 var config = {
-apiKey: "AIzaSyAb2apiV3KDh87P95icxaUsAPNPuFAeWS4",
-authDomain: "trainscheduler-2ec99.firebaseapp.com",
-databaseURL: "https://trainscheduler-2ec99.firebaseio.com",
-projectId: "trainscheduler-2ec99",
-storageBucket: "trainscheduler-2ec99.appspot.com",
-messagingSenderId: "664536583406"
+    apiKey: "AIzaSyAb2apiV3KDh87P95icxaUsAPNPuFAeWS4",
+    authDomain: "trainscheduler-2ec99.firebaseapp.com",
+    databaseURL: "https://trainscheduler-2ec99.firebaseio.com",
+    projectId: "trainscheduler-2ec99",
+    storageBucket: "trainscheduler-2ec99.appspot.com",
+    messagingSenderId: "664536583406"
 };
 firebase.initializeApp(config);
-
-
 
 let trainScheduler = (function(){
     // set defaults
     let db = firebase.database();
     let fields = ['trainName','destination','firstTrainTime','frequency'];
     let fieldsObj = {}; //to fill and push to firebase
+    let theForm = document.getElementById('trainForm');
 
     // bind events 
     $('.submit').on('click', validateTrain);
@@ -32,32 +31,27 @@ let trainScheduler = (function(){
 
     // get trains 
     loadTrainTable();
-    
 
+    // validate form
     function validateTrain(e) {
         e.preventDefault();
         e.stopPropagation();
-        let theForm = document.getElementById('trainForm');
-        // let regex = /(^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$)/;
-        // console.log(regex.test($('#firstTrainTime').val()));
         if (theForm.checkValidity() === false){ //html5 method
             theForm.classList.add('was-validated');
-
         } else {
             let trainId = trainIdEl.val() == '' ? '' : trainIdEl.val();
-            //console.log('validate trainId: ' + trainId);
             storeTrain(trainId);
             scrollToEl('.schedule-wrapper');
         }
     }
     
+    // store train data
     function storeTrain(trainId){
         fields.map(function(field){
             fieldsObj[field + ''] = $('#' + field).val().trim();
             $('#' + field).val(''); // empty fields after getting vals
         });
         if (trainId != ''){
-            //console.log('store trainId: ' + trainId);
             db.ref(trainId).set(fieldsObj);
             message = 'Train updated!';
         } else {
@@ -68,6 +62,7 @@ let trainScheduler = (function(){
         loadTrainTable();
     }
 
+    // get train from db
     function getTrain(){
         let trainId = $(this).attr('data-id');
         var ref = db.ref(trainId);
@@ -81,6 +76,7 @@ let trainScheduler = (function(){
         scrollToEl('.train-form');
     }
 
+    // remove train from db
     function removeTrain(){
         let trainId = $(this).attr('data-id');
         modal.initModal(function(x){
@@ -93,6 +89,7 @@ let trainScheduler = (function(){
         });
     }
 
+    // load train table
     function loadTrainTable(){
         $('.schedule tbody').empty();
         db.ref().on('child_added', function(childSnapshot){
@@ -123,9 +120,12 @@ let trainScheduler = (function(){
             console.log('the read failed: ' + errorObj.code);
         });
     }
+    setInterval(loadTrainTable, 30000);
+
 
     
-    // utils
+    // utils //
+    // show message after add/edit/remove
     function showMessage(message){
         successEl.slideDown(300,function(){
             successEl.text(message);
@@ -136,12 +136,14 @@ let trainScheduler = (function(){
         });
     }
 
+    // scroll to position
     function scrollToEl(el){
         $('html, body').animate({
             scrollTop: $(el).offset().top
         }, 500, 'linear');
     }
 
+    // get times for table
     function getNextTime(startTime, freq) {
         let nowTime = moment();
         let start = moment(startTime, 'HH:mm');
@@ -160,6 +162,7 @@ let trainScheduler = (function(){
 trainScheduler();
 
 
+// modal
 let modal = (function(m){
     m = {};
     let modal = $('.modal');
@@ -169,7 +172,6 @@ let modal = (function(m){
             callback(true);
         });
     }
-
     $('.modal .modal_close, .modal .cancel').on('click', function(e){
         if (modal.is(':visible')) {
             modal.fadeOut('fast');

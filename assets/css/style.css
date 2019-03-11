@@ -1,6 +1,9 @@
-/* style.css */
+@import 'reset.css';
+@import 'icons.css';
+
 
 /* f06449-ede6e3-dadad9-36382e-5bc3eb */
+/* vars */
 :root {
     --main-red: #f06449;
     --main-gray: #ede6e3;
@@ -9,94 +12,98 @@
     --main-blue: #5bc3eb;
 }
 
+/* html elements */
 body {
-    font-family: 'Cabin', sans-serif;
+    font-family: 'Thasadith', sans-serif;
 }
-
 h1, h2, h3, h4, h5 {
-    font-family: 'Cabin', sans-serif;
+    font-family: 'Anton', sans-serif;
     color: var(--main-gray-dk);
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+section {
+    margin-bottom: 40px;
 }
 
+/* header */
 header {
-    display: flex;
-    color: var(--main-blue);
-    justify-content: space-between;
+    background-color: var(--main-gray-dk);
     padding: 40px;
+    margin-bottom: 50px;
+}
+header h1{
+    color: white;
     text-align: center;
 }
-header nav li {
-    padding: 1px 20px;
-}
-header nav li a.active{
-    color: red;
-}
-
-
-
 .wrapper {
     margin-bottom: 50px;
 }
 
-.gif-main h2 {
-    text-align: center;
+/* schedule table */
+.schedule-wrapper .card-header {
+    background-color: var(--main-blue);
 }
-.results-container {
-    align-items: flex-start;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 30px;
-}
-.results-container .result-block {
-    background-color: #F8F8F8;
-    border: 1px solid var(--main-gray);
-    border-radius: 3px;
-    height: 300px;
-    margin: 0 10px 45px;
-    padding: 15px;
-    overflow: hidden;
-    width: 30%;
-}
-.results-container .result-block.two-wide {
-    width: 47%;
-}
-.result-block h4 {
-    height: 76px;
-    overflow: hidden;
-}
-.result-block.two-wide h4 {
-    height: 85px;
-}
-.add-more {
-    background: linear-gradient(#F8F8F8 0%, #DADAD9 100%) no-repeat 50% 50% / 100% 100%;
-    border: 1px solid #ccc;
-    display: block;
+.schedule-wrapper .card-header h2 {
     color: var(--main-gray-dk);
-    font-size: 1.4em;
-    margin: 0 auto;
-    padding: 15px;
+    text-shadow: -1px -1px white;
+}
+
+
+table.schedule {
+    width: 100%;
+}
+table.schedule th {
+    font-weight: bold;
+}
+table.schedule th.wide {
+    width: 25%;
+}
+table.schedule .centered {
     text-align: center;
-    text-transform: uppercase;
-    width: 95.5%;
 }
-.add-more:hover {
-    background: linear-gradient(#E8E8E8 0,#F8F8F8 100%) no-repeat 50% 50% / 100% 100%;
-    color: var(--main-blue);
-    text-decoration: none;
+
+td button {
+    border-radius: 2px;
+    color: white;
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+    font-size: 0.9em;
+    border: none;
+}
+button.edit {
+    background-color: var(--main-blue);
+    margin-right: 10px;
+}
+button.remove {
+    background-color: var(--main-red);
+}
+button.edit:hover {
+    background-color: var(--main-gray-dk);
+}
+button.remove:hover {
+    background-color: var(--main-gray-dk);
+}
+
+.success {
+    position: fixed;
+    top: 30px;
+    left: 25%;
+    width: 50%;
+    z-index: 10;
+}
+
+span.required {
+    color: red;
+}
+.btn.submit {
+    color: white;
+    background-color: var(--main-blue);
 }
 
 
-.gif-buttons {
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-}
-.gif-buttons button {
-    margin: 0 10px 10px;
-}
-
+/* footer */
 footer {
     background-color: var(--main-blue);
     color: var(--main-gray-lt);
@@ -105,18 +112,37 @@ footer {
     text-align: center;
 }
 
-.tabs ul {
-    list-style: none;
+
+/* modal */
+.modal {
+	position: fixed; 
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto; 
+	background-color: rgba(0,0,0,0.4);     
 }
-.tabs ul li {
-    display: inline;
+.modal-content {
+    background-color: #fefefe;
+    margin: 138px auto 0; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%; 
 }
-.tabs ul li a.active {
+.modal-title {
+    border-bottom: 1px solid #ccc;
+}
+.modal_close {
+    color: #aaa;
+    float: right;
+    font-size: 48px;
     font-weight: bold;
 }
-.tab-pane {
-    display: none;
-}
-.tab-pane.active {
-    display: block;
+.modal_close:hover,
+.modal_close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

@@ -22,32 +22,36 @@
 	<script type="text/javascript">
 		// FirebaseUI config.
 		var uiConfig = {
-		signInSuccessUrl: 'https://petr0n.github.io/TrainScheduler/scheduler.html',
-		signInOptions: [
-			// Leave the lines as is for the providers you want to offer your users.
-			firebase.auth.GoogleAuthProvider.PROVIDER_ID
-		],
-		// tosUrl and privacyPolicyUrl accept either url string or a callback
-		// function.
-		// Terms of service url/callback.
-		tosUrl: '<your-tos-url>',
-		// Privacy policy url/callback.
-		privacyPolicyUrl: function() {
-			window.location.assign('<your-privacy-policy-url>');
-		}
+			signInSuccessUrl: 'https://petr0n.github.io/TrainScheduler/scheduler.html',
+			signInOptions: [
+				firebase.auth.GoogleAuthProvider.PROVIDER_ID
+			],
+			tosUrl: '<your-tos-url>',
+			// Privacy policy url/callback.
+			privacyPolicyUrl: function() {
+				window.location.assign('<your-privacy-policy-url>');
+			}
 		};
-
-		// Initialize the FirebaseUI Widget using Firebase.
 		var ui = new firebaseui.auth.AuthUI(firebase.auth());
 		// The start method will wait until the DOM is loaded.
 		ui.start('#firebaseui-auth-container', uiConfig);
 	</script>
+    <link rel="stylesheet" href="assets/css/style.css">
+
 </head>
 <body>
-	<!-- The surrounding HTML is left untouched by FirebaseUI.
-			Your app may use that space for branding, controls and other customizations.-->
-	<h1>Welcome the Train Scheduler</h1>
+	<header>
+		<div class="container">
+			<h1>Train Scheduler</h1>
+		</div>
+	</header>
 	<div id="firebaseui-auth-container"></div>
-	<p>Or skip <a href="https://petr0n.github.io/TrainScheduler/scheduler.html">sign in</a>.</p>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3 col-offset-4" style="text-align: center;">
+				<p>Or skip <a href="https://petr0n.github.io/TrainScheduler/scheduler.html">sign in</a>.</p>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

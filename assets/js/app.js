@@ -16,11 +16,6 @@ let trainScheduler = (function(){
     let fieldsObj = {}; //to fill and push to firebase
     let theForm = document.getElementById('trainForm');
 
-    // bind events 
-    $('.submit').on('click', validateTrain);
-    $(document).on('click', 'button.edit', getTrain);
-    $(document).on('click', 'button.remove', removeTrain);
-
     // cache elements
     trainIdEl = $('#trainId');
     trainNameEl = $('#trainName');
@@ -28,6 +23,15 @@ let trainScheduler = (function(){
     frequencyEl = $('#frequency');
     firstTrainTimeEl = $('#firstTrainTime');
     successEl = $('.success');
+    trainFormWrapperEl = $('#trainForm-wrapper');
+    addEditHeaderEl = trainFormWrapperEl.find('h2');
+    
+    // bind events 
+    $('.submit').on('click', validateTrain);
+    $(document).on('click', 'button.edit', getTrain);
+    $(document).on('click', 'button.remove', removeTrain);
+    trainFormWrapperEl.find('.left-col').on('click', slideOutForm)
+    trainFormWrapperEl.find('a.cancel-addEdit').on('click', slideOutForm);
 
     // get trains 
     loadTrainTable();
@@ -60,6 +64,7 @@ let trainScheduler = (function(){
         }
         showMessage(message);
         loadTrainTable();
+        slideOutForm();
     }
 
     // get train from db
@@ -72,8 +77,8 @@ let trainScheduler = (function(){
             });
             trainIdEl.val(trainId);
         });
-        $('.train-form h3').text('Update Train');
-        scrollToEl('.train-form');
+        addEditHeaderEl.text('Update Train');
+        slideOutForm();
     }
 
     // remove train from db
@@ -136,6 +141,17 @@ let trainScheduler = (function(){
         });
     }
 
+    // slide out form
+    function slideOutForm(e){
+        if (e){ // if called directly from a click event do this
+            e.preventDefault();
+            addEditHeaderEl.text('+ Add Train');
+        } else {
+            addEditHeaderEl.html('<i class="icon-pencil"></i> Edit Train');
+        }
+        trainFormWrapperEl.toggleClass('open');
+    }
+
     // scroll to position
     function scrollToEl(el){
         $('html, body').animate({
@@ -168,7 +184,7 @@ let modal = (function(m){
     let modal = $('.modal');
     m.initModal = function(callback){
         modal.fadeIn(300);
-        $('.modal .remove').on('click', function(){
+        modal.find('.remove').on('click', function(){
             callback(true);
         });
     }
@@ -184,3 +200,4 @@ let modal = (function(m){
     }
     return m;
 })();
+

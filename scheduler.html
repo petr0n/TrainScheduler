@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8"/>
     <title>Train Scheduler</title>
-	<link rel="shortcut icon" href="favicon.ico">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="favicon.ico"> 
 	<link href="https://fonts.googleapis.com/css?family=Anton|Thasadith" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
@@ -25,7 +26,7 @@
 				<div class="card-header">
 					<h2><i class="icon-travel-train"></i> Train Schedule</h2>
 				</div>
-				<div class="card-body">
+				<div class="card-body table-responsive-lg">
 					<table class="schedule table">
 						<thead>
 							<tr>
@@ -46,7 +47,7 @@
 
 	</section>
 
-
+<!-- 
 	<section class="train-form">
 		<div class="container">
 			<div class="card">
@@ -114,12 +115,66 @@
 			</div>
 		</div>
 		
-	</section>
+	</section> -->
 		
 </div>
-<footer>
-	&copy; Train Scheduler by Peter Abeln
-</footer>
+
+<div class="train-form" id="trainForm-wrapper">
+    <div class="left-col">
+        <h2>+ Add Train</h2>
+    </div>
+    <div class="right-col">
+        <p>Required <span class="required">*</span></p>
+        <form id="trainForm" class="needs-validation" novalidate>
+        <input type="hidden" id="trainId" name="trainId">
+        <div class="form-group row">
+            <label for="trainName" class="col-form-label">
+                Train Name 
+                <span class="required">*</span>
+            </label>
+            <input type="text" class="form-control" id="trainName" required>
+            <div class="invalid-feedback">
+                Train Name required
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="destination" class="col-form-label">
+                Destination 
+                <span class="required">*</span>
+            </label>
+            <input type="text" class="form-control" id="destination" required>
+            <div class="invalid-feedback">
+                Destination required
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="firstTrainTime" class="col-form-label">
+                First Train Time (HH:mm) 
+                <span class="required">*</span>
+            </label>
+            <input type="text" pattern="([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]" class="form-control" id="firstTrainTime" placeholder="HH:mm" required>
+            <div class="invalid-feedback">
+                Valid First Train Time required (HH:mm e.g. 02:00)
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="frequency" class="col-form-label">
+                Frequency <span class="required">*</span>
+            </label>
+            <input type="number" class="form-control" id="frequency" required>
+            <div class="invalid-feedback">
+                Frequency required
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn submit">Submit</button>
+                <a style="float: right;" class="btn cancel-addEdit">Cancel</a>   
+            </div>
+        </div>
+    </form>
+    </div>
+</div>
 
 <!-- modal -->
 <div id="train_modal" class="modal" style="display: none;">
@@ -136,6 +191,10 @@
 		</div>
 	</div>
 </div>
+
+<footer>
+    &copy; Train Scheduler by Peter Abeln
+</footer>
 
 <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

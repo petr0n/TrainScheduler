@@ -111,6 +111,7 @@ let trainScheduler = (function(){
                 .html('<i class="icon-bin"></i>')
                 .addClass('remove')
                 .attr('data-id', childSnapshot.key);
+                
             let newRow = $('<tr>').addClass('train');
             let newCol1 = $('<td>').text(fieldsObj['trainName']);
             let newCol2 = $('<td>').text(fieldsObj['destination']);
